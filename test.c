@@ -1,8 +1,9 @@
-//hello world
-// et si je tente ca comme ca
-//ce porjet ca être vraimen
-//nouvelle modif test voir si ca marche sur un autre ordi
+//fichier test
 
-//hello world
-/*jfjdkedjh
-jforkg*/
+#include <stdio.h>
+#include <stdlib.h>
+
+void main(){
+    
+    printf("hello world");
+}
