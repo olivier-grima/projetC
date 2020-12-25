@@ -1,7 +1,7 @@
 //Olivier GRIMA et Océane MOFID
 //ELEC3, TDB.
 
-//exemple :
+//exemple : 
 //ensemble e = {1,4,5} de capacité 10
 //présence de l'entier -> 1  
 //absence de l'entier -> 0  
