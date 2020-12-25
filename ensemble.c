@@ -3,8 +3,8 @@
 
 //exemple :
 //ensemble e = {1,4,5} de capacité 10
-//présence de l'entier -> 1
-//absence de l'entier -> 0
+//présence de l'entier -> 1  
+//absence de l'entier -> 0  
 //tableau e = [3,10,0,1,0,0,1,1,0,0,0,0]
 
 
