@@ -18,20 +18,20 @@ typedef int ensemble[CAPACITEMAX+2];
 
 //-----------------------------Procédures------------------------------------------//
 
-void initEns(int ensemble e[CAPACITEMAX+2], int n){ //initialise à vide l'ensemble passé en paramètre
+void initEns(ensemble e[CAPACITEMAX+2], int n){ //initialise à vide l'ensemble passé en paramètre
 
-    int ensemble e[n+2]; 
+    //int ensemble e[n+2]; 
     //not finished
 }
 
 //
 
-void plein(ensemble e[int N]){ // remplit l'ensemble passé en paramètre
-    
-    e[0]=?; //cardinalité effective -> nbr d'éléments
-    e[1]=N-2; //capacité effective -> capacité
-    for(int i = 2; i<=N-1){
-        e[i]=1;
+void plein(ensemble e[]){ // remplit l'ensemble passé en paramètre
+    int N;
+    //e[0]=?; //cardinalité effective -> nbr d'éléments
+    //e[1] = {N-2}; //capacité effective -> capacité
+    for(int i = 2; i<=N-1; i++){
+        //e[i]={1};
     }
     //not finished
 }
@@ -47,7 +47,7 @@ int egal(ensemble e1[],ensemble e2[]){
 
         //boucle for ?
             //compare chaque élément (0 ou 1)
-           if(e1[i]=e2[i]){
+           if(e1[i]==e2[i]){
                 egaux=1;
                 i++;
             } 
@@ -58,10 +58,8 @@ int egal(ensemble e1[],ensemble e2[]){
         //boucle infinie ??
         //return 1; //ensembles égaux
         
-
-    else return -1; //ensembles différents
-
     }
+    else return -1; //ensembles différents
     //not finished
 }
 
