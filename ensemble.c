@@ -17,13 +17,13 @@ typedef int ensemble[CAPACITEMAX+2];
 
 //-----------------------------Procédures------------------------------------------//
 
-void initEns(int n){ 
-    ensemble e[n+2]; //initialise un tableau de capacité n
+void initEns(ensemble e,int n){ 
+    ensemble ens[n+2]; //initialise un tableau de capacité n
 }
 
 //
 
-void plein(ensemble e[]){ // remplit l'ensemble passé en paramètre
+void plein(ensemble e){ // remplit l'ensemble passé en paramètre
     int N=e[1];
     //e[0]=?; //cardinalité effective -> nbr d'éléments
     //e[1] = {N-2}; //capacité effective -> capacité
@@ -35,7 +35,7 @@ void plein(ensemble e[]){ // remplit l'ensemble passé en paramètre
 
 //
 
-int egal(ensemble e1[],ensemble e2[]){
+int egal(ensemble e1,ensemble e2){
     int egaux;
     int i=2;
     if (e1[0]==e2[0]){ //test si même nbr d'élément
@@ -64,8 +64,8 @@ int egal(ensemble e1[],ensemble e2[]){
 
 //
 
-int appartient(int n,ensemble ens[]){ //teste si entier n appartient à un ensemble e ;
-    if(ens[n+2]==n){
+int appartient(int n,ensemble e){ //teste si entier n appartient à un ensemble e ;
+    if(e[n+2]==n){
         return 1;
     }
     else return 0;
@@ -73,16 +73,17 @@ int appartient(int n,ensemble ens[]){ //teste si entier n appartient à un ensem
 
 //
 
-int enlever(int n,ensemble ens[]){ //enlève un entier n d’un ensemble e ;
-    //ens[n+2]=0;
+int enlever(int n,ensemble e){ //enlève un entier n d’un ensemble e ;
+    
+    e[n+2]=0;
     return EXIT_SUCCESS;
 }
 
-void printlnEns(ensemble ens[]){ //printlnEns (1 paramètre), écrit un ensemble e sur la sortie standard 
+void printlnEns(ensemble e){ //printlnEns (1 paramètre), écrit un ensemble e sur la sortie standard 
                         //suivi d’un passage à la ligne ; e1 = [ 2 19 31 33 ]
     printf("%s = "); //nom de l'array
-    for (int i = 2; i < ens[1]-1; i++){
-        printf("%d",ens[i]); 
+    for (int i = 2; i < e[1]-1; i++){
+        printf("%d",e[i]); 
     }
     printf("]\n");
 
