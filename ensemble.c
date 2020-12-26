@@ -74,7 +74,7 @@ int appartient(int n,ensemble ens[]){ //teste si entier n appartient à un ensem
 //
 
 int enlever(int n,ensemble ens[]){ //enlève un entier n d’un ensemble e ;
-    ens[n+2]=0;
+    //ens[n+2]=0;
     return EXIT_SUCCESS;
 }
 
