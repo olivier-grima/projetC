@@ -20,6 +20,7 @@ typedef int ensemble[CAPACITEMAX+2];
 
 void initEns(ensemble e,int n){ //initialise un tableau de capacité n
     ensemble e; 
+    //not finished
 }
 
 //
@@ -37,7 +38,7 @@ void plein(ensemble e){ // remplit l'ensemble passé en paramètre
 
 //
 
-int egal(ensemble e1,ensemble e2){ //hypothèse : les ensembles font la même taille -> capacités égales
+int egal(ensemble e1, ensemble e2){ //hypothèse : les ensembles font la même taille -> capacités égales
     int i=2;
     if (e1[0]==e2[0]){ //test si même nbr d'élément 
         for(int k=2; k<e1[1]+1; k++){
