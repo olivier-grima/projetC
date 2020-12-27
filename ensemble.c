@@ -24,6 +24,10 @@ void initEns(ensemble e,int n){ //initialise un tableau de capacité n
 }
 
 //
+void vide(ensemble e[]){// vide l'emseble passé en paramètre
+
+}
+//
 
 void plein(ensemble e){ // remplit l'ensemble passé en paramètre
     e[0]=e[1];
