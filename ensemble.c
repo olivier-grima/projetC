@@ -23,11 +23,13 @@ void initEns(ensemble e,int n){ //initialise un tableau de capacité n
     //not finished
 }
 
-//
-void vide(ensemble e[]){// vide l'emseble passé en paramètre
-
+void vide(ensemble e){// vide l'emsemble passé en paramètre
+    e[0] = 0;
+    for (int i = 2; i <= e[1]+1; i++){
+        e[i]=0;
+    } 
 }
-//
+
 
 void plein(ensemble e){ // remplit l'ensemble passé en paramètre
     e[0]=e[1];
@@ -36,10 +38,12 @@ void plein(ensemble e){ // remplit l'ensemble passé en paramètre
     }
 }
 
-//
+int estVide(ensemble e){// test si un ensemble e est vide ou pas
+    if (e[0]) return 0; //tableau non vide
+    return 1; //tableau vide
+}
 
 int egal(ensemble e1, ensemble e2){ //hypothèse : les ensembles font la même taille -> capacités égales
-    int i=2;
     if (e1[0]==e2[0]){ //test si même nbr d'élément 
         for(int k=2; k<e1[1]+1; k++){
            if(e1[k]!=e2[k]){ //s'arrête dès que des elem ont des val différentes 
@@ -53,7 +57,9 @@ int egal(ensemble e1, ensemble e2){ //hypothèse : les ensembles font la même t
     }    
 }
 
-//
+void affecter(ensemble e1, ensemble e2){// affecte un ensemble e2 à un ensemble e1
+     
+}
 
 int appartient(int n, ensemble e){ //teste si entier n appartient à un ensemble e ;
     if(e[n+2]==n){
@@ -83,20 +89,30 @@ void printlnEns(ensemble e){ //écrit un ensemble e sur la sortie standard suivi
 
 //
 
-void Union(ensemble e1, ensemble e2, ensemble e3){ //calcule e3 = e1 U e2 ;
+void Union(ensemble e1, ensemble e2, ensemble e3){ //calcule e3 = e1 U e2 ; hypothèse capacités egales
+    e3[0]=e1[0]+e2[0]; //nbr d'éléments dépend de l'union
+    e3[1]=e1[1]; //capacités égales
     for (int i = 2; i <=e1[1]+1; i++){
         if(e1[i]==1 || e2[i]==1){
             e3[i]=1;
+            if(e1[i]==1 && e2[i]==1){ 
+                e3[0]-=1;
+            }
         }
     }
-    //not finished
 }
 
 //
 
-void complementaire(int x,int y){
-
-
+void complementaire(ensemble e1, ensemble e2){ //calcule e2 complémentaire de e1 dans l’ensemble plein
+    e2[1]=e1[1];
+    e2[0]=e1[1]-e1[0];
+    for(int i = 2; i<=e1[1]+1; i++){
+        if(e1[i]==0){
+            e2[i]==1;
+        }
+        else e2[i]==0;
+    }
 }
 
 //
