@@ -14,7 +14,6 @@
 #include <math.h>
 #define CAPACITEMAX 1000
 typedef int ensemble[CAPACITEMAX+2];
-#define getName(var)  #var
 
 
 //-----------------------------Procédures------------------------------------------//
