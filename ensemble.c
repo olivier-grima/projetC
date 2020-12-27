@@ -22,6 +22,10 @@ void initEns(int n){
 }
 
 //
+void vide(ensemble e[]){// vide l'emseble passé en paramètre
+
+}
+//
 
 void plein(ensemble e[]){ // remplit l'ensemble passé en paramètre
     int N=e[1];
