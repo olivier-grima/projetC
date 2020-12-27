@@ -15,22 +15,15 @@ void printlnEns(ensemble e){ //écrit un ensemble e sur la sortie standard suivi
     printf("]\n");
 }
 
-void complementaire(ensemble e1, ensemble e2){ //calcule e2 complémentaire de e1 dans l’ensemble plein
-    e2[1]=e1[1];
-    e2[0]=e1[1]-e1[0];
-    for(int i = 2; i<=e1[1]+1; i++){
-        if(e1[i]==0){
-            e2[i]=1;
-        }
-        else e2[i]=0;
-    }
+void initEns(ensemble e,int n){ //initialise un tableau de capacité n
+    e[1]=n; 
+    //not finished
 }
 
 
 int main(){
-    ensemble ens = {4,5,1,1,1,0,1}; 
-    ensemble ens1;
-    complementaire(ens, ens1);
-    printlnEns(ens1);
+    ensemble ens;
+    initEns(ens, 50);
+    printf("%d\n", ens[1]);
     return EXIT_SUCCESS;
 }

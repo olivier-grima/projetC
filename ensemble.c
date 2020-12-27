@@ -16,10 +16,11 @@
 typedef int ensemble[CAPACITEMAX+2];
 
 
+
 //-----------------------------Procédures------------------------------------------//
 
-void initEns(ensemble e,int n){ //initialise un tableau de capacité n
-    ensemble e; 
+void initEns(ensemble e, int n){ //initialise un tableau de capacité n
+    e[1]=n; 
     //not finished
 }
 
@@ -30,10 +31,9 @@ void vide(ensemble e){// vide l'emsemble passé en paramètre
     } 
 }
 
-
 void plein(ensemble e){ // remplit l'ensemble passé en paramètre
     e[0]=e[1];
-    for(int i = 2; i<=e[1]+1; i++){
+    for(int i=2; i<=e[1]+1; i++){
         e[i]=1;
     }
 }
@@ -45,7 +45,7 @@ int estVide(ensemble e){// test si un ensemble e est vide ou pas
 
 int egal(ensemble e1, ensemble e2){ //hypothèse : les ensembles font la même taille -> capacités égales
     if (e1[0]==e2[0]){ //test si même nbr d'élément 
-        for(int k=2; k<e1[1]+1; k++){
+        for(int k=2; k<=e1[1]+1; k++){
            if(e1[k]!=e2[k]){ //s'arrête dès que des elem ont des val différentes 
                 return 0; //ensembles différents
             } 
@@ -58,7 +58,9 @@ int egal(ensemble e1, ensemble e2){ //hypothèse : les ensembles font la même t
 }
 
 void affecter(ensemble e1, ensemble e2){// affecte un ensemble e2 à un ensemble e1
-     
+     for (int i = 0; i <= e2[1]+1; i++){
+         e1[i]=e2[i]; // affecte un à un les éléments de e2 à e1
+     }
 }
 
 int appartient(int n, ensemble e){ //teste si entier n appartient à un ensemble e ;
@@ -75,11 +77,19 @@ int enlever(int n, ensemble e){ //enlève un entier n d’un ensemble e ;
     return EXIT_SUCCESS;
 }
 
-//
+void printEns(ensemble e){ // écrit un ensemble sur la sortie standard 
+    printf("ens = [ ");
+    for (int i=2; i <=e[1]+1; i++){
+        if(e[i]==1){
+            printf("%d ",i-2);
+        } 
+    }
+    printf("]");
+}
 
 void printlnEns(ensemble e){ //écrit un ensemble e sur la sortie standard suivi d’un passage à la ligne ; e1 = [ 2 19 31 33 ]
-    printf("ens = [ "); //nom de l'array
-    for (int i = 2; i <=e[1]+1; i++){
+    printf("ens = [ ");
+    for (int i=2; i <=e[1]+1; i++){
         if(e[i]==1){
             printf("%d ",i-2);
         } 
@@ -92,7 +102,7 @@ void printlnEns(ensemble e){ //écrit un ensemble e sur la sortie standard suivi
 void Union(ensemble e1, ensemble e2, ensemble e3){ //calcule e3 = e1 U e2 ; hypothèse capacités egales
     e3[0]=e1[0]+e2[0]; //nbr d'éléments dépend de l'union
     e3[1]=e1[1]; //capacités égales
-    for (int i = 2; i <=e1[1]+1; i++){
+    for (int i=2; i <=e1[1]+1; i++){
         if(e1[i]==1 || e2[i]==1){
             e3[i]=1;
             if(e1[i]==1 && e2[i]==1){ 
@@ -107,11 +117,13 @@ void Union(ensemble e1, ensemble e2, ensemble e3){ //calcule e3 = e1 U e2 ; hypo
 void complementaire(ensemble e1, ensemble e2){ //calcule e2 complémentaire de e1 dans l’ensemble plein
     e2[1]=e1[1];
     e2[0]=e1[1]-e1[0];
-    for(int i = 2; i<=e1[1]+1; i++){
+    for(int i=2; i<=e1[1]+1; i++){
         if(e1[i]==0){
-            e2[i]==1;
+            e2[i]=1;
         }
-        else e2[i]==0;
+        else {
+            e2[i]=0;
+        }    
     }
 }
 
