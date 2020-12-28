@@ -70,7 +70,10 @@ int appartient(int n, ensemble e){ //teste si entier n appartient à un ensemble
     else return 0;
 }
 
-//
+int ajouter(int n, ensemble e){ // ajoute un entier n à un ensemble e
+    e[n+2]=n;
+    return EXIT_SUCCESS;
+}
 
 int enlever(int n, ensemble e){ //enlève un entier n d’un ensemble e ;
     e[n+2]=0;
@@ -92,7 +95,20 @@ void printlnEns(ensemble e){ //écrit un ensemble e sur la sortie standard suivi
     printf("]\n");
 }
 
-//
+void intersection(ensemble e1, ensemble e2, ensemble e3){ // calcul si e3 est égale à l'intersection de e1 et e3. Hypothèse : 
+    int k =0, i;
+    int c = (e1[1]<=e2[1]) ? e1[1] : e2[1]; // Calcul de la plus petite capacité pour la condition du for
+    e3[1]=c; // capacité totale de l'ensemble e3 est égale à la capacité du plus petit des ensemble e1, e2
+
+    for(int i = 0; i <= c+1; i++){
+        if (e1[i]==1 && e2[i]==1){ //il s'agit d'une intersection des deux ensemble, la valeur est alors ajouté à e3
+            e3[i]=1;
+            k++;
+        }
+        else e3[i]=0; // pas d'intersection, donc pas de valour ajoutée à e3
+    }
+    e3[0]=k; // capacité effective de l'ensemble e3
+}
 
 void Union(ensemble e1, ensemble e2, ensemble e3){ //calcule e3 = e1 U e2 ; hypothèse capacités egales
     e3[0]=e1[0]+e2[0]; //nbr d'éléments dépend de l'union
