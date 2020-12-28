@@ -88,12 +88,7 @@ void printEns(ensemble e){ // écrit un ensemble sur la sortie standard
 }
 
 void printlnEns(ensemble e){ //écrit un ensemble e sur la sortie standard suivi d’un passage à la ligne ; e1 = [ 2 19 31 33 ]
-    printf("ens = [ ");
-    for (int i=2; i <=e[1]+1; i++){
-        if(e[i]==1){
-            printf("%d ",i-2);
-        } 
-    }
+    printEns(e);
     printf("]\n");
 }
 
