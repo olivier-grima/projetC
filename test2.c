@@ -21,30 +21,31 @@ void printlnEns(ensemble e){ //écrit un ensemble e sur la sortie standard suivi
     printf("\n");
 }
 
-void difference(ensemble e1, ensemble e2, ensemble e3){
-    e3[0]=e1[0];
-    e3[1]=e1[1];
-    
-    for(int i= 2; i <= e1[1]+1; i++){
-        if(e1[i] == e2[i]){
-            e3[i]=0;
-            e3[0]--;
+void intersection(ensemble e1, ensemble e2, ensemble e3){ // calcul si e3 est égale à l'intersection de e1 et e3. Hypothèse : 
+    e3[0] =0;
+    e3[1]=e1[1]; // capacité totale de l'ensemble e3 est égale à la capacité du plus petit des ensemble e1, e2
+
+    for(int i = 2; i <= e1[1]+1; i++){
+        if (e1[i]==1 && e2[i]==1){ //il s'agit d'une intersection des deux ensemble, la valeur est alors ajouté à e3
+            e3[i]=1;
+            e3[0]++;
         }
-        else e3[i] = e1[i];
-        //printf("%d ", e3[i]);
+        else e3[i]=0; // pas d'intersection, donc pas de valour ajoutée à e3
+        printf("%d ", e3[i]);
     }
-    printf("%d\n", e3[0]);
+    printf("\n%d\n",e3[0]);
+    printf("%d\n",e3[1]);
     printlnEns(e3);
 }
 
 int main(){
     ensemble ens  = {5,6,1,1,1,0,1,1}; //ens = [ 0 1 2 4 ]
-    ensemble ens1 = {2,7,0,0,0,1,0,1,0}; //ens1 = [ 1 2 ]
+    ensemble ens1 = {3,6,0,1,0,1,0,1}; //ens1 = [ 1 2 ]
     ensemble ens2;
     printf("ens = [");
     printlnEns(ens);
     printf("ens1 = [");
     printlnEns(ens1);
-    difference(ens,ens1,ens2);
+    intersection(ens,ens1,ens2);
     return EXIT_SUCCESS;
 }

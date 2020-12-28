@@ -95,19 +95,17 @@ void printlnEns(ensemble e){ //écrit un ensemble e sur la sortie standard suivi
     printf("]\n");
 }
 
-void intersection(ensemble e1, ensemble e2, ensemble e3){ // calcul si e3 est égale à l'intersection de e1 et e3. Hypothèse : 
-    int k =0, i;
-    int c = (e1[1]<=e2[1]) ? e1[1] : e2[1]; // Calcul de la plus petite capacité pour la condition du for
-    e3[1]=c; // capacité totale de l'ensemble e3 est égale à la capacité du plus petit des ensemble e1, e2
+void intersection(ensemble e1, ensemble e2, ensemble e3){ // calcul si e3 est égale à l'intersection de e1 et e3. Hypothèse : les ensembles e1 et e2 ont la même capacité.
+    e3[0] =0; // on initialise la capacité effective de e3
+    e3[1]=e1[1]; // capacité totale de l'ensemble e3
 
-    for(int i = 0; i <= c+1; i++){
-        if (e1[i]==1 && e2[i]==1){ //il s'agit d'une intersection des deux ensemble, la valeur est alors ajouté à e3
+    for(int i = 2; i <= e1[1]+1; i++){
+        if (e1[i]==1 && e2[i]==1){ //il s'agit d'une intersection des deux ensemble, la valeur est alors ajoutée à e3
             e3[i]=1;
-            k++;
+            e3[0]++; // la capacité effective de e3 augmente
         }
-        else e3[i]=0; // pas d'intersection, donc pas de valour ajoutée à e3
+        else e3[i]=0; // pas d'intersection, donc pas de valeur ajoutée à e3
     }
-    e3[0]=k; // capacité effective de l'ensemble e3
 }
 
 void Union(ensemble e1, ensemble e2, ensemble e3){ //calcule e3 = e1 U e2 ; hypothèse capacités egales
