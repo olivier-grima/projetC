@@ -123,7 +123,18 @@ void Union(ensemble e1, ensemble e2, ensemble e3){ //calcule e3 = e1 U e2 ; hypo
     }
 }
 
-//
+void difference(ensemble e1, ensemble e2, ensemble e3){ // calcul un ensemble e3 qui est la différence des ensemble e1 et e2
+    e3[0]=e1[0];
+    e3[1]=e1[1];
+    
+    for(int i= 2; i <= e1[1]+1; i++){
+        if(e1[i] == e2[i]){
+            e3[i]=0;
+            e3[0]--;
+        }
+        else e3[i] = e1[i];
+    }
+}
 
 void complementaire(ensemble e1, ensemble e2){ //calcule e2 complémentaire de e1 dans l’ensemble plein
     e2[1]=e1[1];
