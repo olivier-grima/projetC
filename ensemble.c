@@ -147,7 +147,8 @@ void complementaire(ensemble e1, ensemble e2){ //calcule e2 complémentaire de e
     }
 }
 
-//
+void diffSym(ensemble e1, ensemble e2, ensemble e3){ // calcul la différence symétrique des ensembles e1 et e2
+}
 
 //-----------------------------Test------------------------------------------//
 
