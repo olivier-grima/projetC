@@ -156,7 +156,7 @@ void diffSym(ensemble e1, ensemble e2, ensemble e3){ // calcul la différence sy
             e3[i]=0;
         }
         else{
-            e3[i]=0; // pas d'intersection, donc pas de valeur ajoutée à e3
+            e3[i]=1; // pas d'intersection, donc pas de valeur ajoutée à e3
             e3[0]++; // la capacité effective de e3 augmente
         } 
     }
