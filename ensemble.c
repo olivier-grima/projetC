@@ -148,6 +148,18 @@ void complementaire(ensemble e1, ensemble e2){ //calcule e2 complémentaire de e
 }
 
 void diffSym(ensemble e1, ensemble e2, ensemble e3){ // calcul la différence symétrique des ensembles e1 et e2
+    e3[0] =0; // on initialise la capacité effective de e3
+    e3[1]=e1[1]; // capacité totale de l'ensemble e3
+
+    for(int i = 2; i <= e1[1]+1; i++){
+        if (e1[i]==1 && e2[i]==1){ //il s'agit d'une intersection des deux ensemble, la valeur est alors ajoutée à e3
+            e3[i]=0;
+        }
+        else{
+            e3[i]=0; // pas d'intersection, donc pas de valeur ajoutée à e3
+            e3[0]++; // la capacité effective de e3 augmente
+        } 
+    }
 }
 
 //-----------------------------Test------------------------------------------//
