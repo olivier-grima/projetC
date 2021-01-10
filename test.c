@@ -15,15 +15,9 @@ void printlnEns(ensemble e){ //écrit un ensemble e sur la sortie standard suivi
     printf("]\n");
 }
 
-void initEns(ensemble e,int n){ //initialise un tableau de capacité n
-    e[1]=n; 
-    //not finished
-}
 
 
 int main(){
-    ensemble ens;
-    initEns(ens, 50);
-    printf("%d\n", ens[1]);
+    
     return EXIT_SUCCESS;
 }

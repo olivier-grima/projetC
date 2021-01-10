@@ -15,13 +15,10 @@
 #define CAPACITEMAX 1000
 typedef int ensemble[CAPACITEMAX+2];
 
-
-
 //-----------------------------Procédures------------------------------------------//
 
-void initEns(ensemble e, int n){ //initialise un tableau de capacité n
-    e[1]=n; 
-    //not finished
+void initEns(int x, int n){ //initialise un tableau de capacité n
+    //j'arrive pas
 }
 
 void vide(ensemble e){// vide l'emsemble passé en paramètre
@@ -70,14 +67,12 @@ int appartient(int n, ensemble e){ //teste si entier n appartient à un ensemble
     else return 0;
 }
 
-int ajouter(int n, ensemble e){ // ajoute un entier n à un ensemble e
+void ajouter(int n, ensemble e){ // ajoute un entier n à un ensemble e
     e[n+2]=n;
-    return EXIT_SUCCESS;
 }
 
-int enlever(int n, ensemble e){ //enlève un entier n d’un ensemble e ;
+void enlever(int n, ensemble e){ //enlève un entier n d’un ensemble e ;
     e[n+2]=0;
-    return EXIT_SUCCESS;
 }
 
 void printEns(ensemble e){ // écrit un ensemble sur la sortie standard 
@@ -165,7 +160,6 @@ void diffSym(ensemble e1, ensemble e2, ensemble e3){ // calcul la différence sy
 //-----------------------------Test------------------------------------------//
 
 int main(){
-    printf("hello world");
     return EXIT_SUCCESS;
 }
 
