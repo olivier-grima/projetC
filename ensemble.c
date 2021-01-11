@@ -17,8 +17,9 @@ typedef int ensemble[CAPACITEMAX+2];
 
 //-----------------------------Procédures------------------------------------------//
 
-void initEns(int x, int n){ //initialise un tableau de capacité n
-    //j'arrive pas
+void initEns(ensemble e, const int n){ //initialise un tableau de capacité n
+    e[0]=0;
+    e[1]=n;
 }
 
 void vide(ensemble e){// vide l'emsemble passé en paramètre
@@ -68,15 +69,17 @@ int appartient(int n, ensemble e){ //teste si entier n appartient à un ensemble
 }
 
 void ajouter(int n, ensemble e){ // ajoute un entier n à un ensemble e
-    e[n+2]=n;
+    e[n+2]=1;
+    e[0]+=1;
 }
 
 void enlever(int n, ensemble e){ //enlève un entier n d’un ensemble e ;
     e[n+2]=0;
+    e[0]-=1;
 }
 
 void printEns(ensemble e){ // écrit un ensemble sur la sortie standard 
-    printf("ens = [ ");
+    printf("[ ");
     for (int i=2; i <=e[1]+1; i++){
         if(e[i]==1){
             printf("%d ",i-2);
@@ -87,7 +90,7 @@ void printEns(ensemble e){ // écrit un ensemble sur la sortie standard
 
 void printlnEns(ensemble e){ //écrit un ensemble e sur la sortie standard suivi d’un passage à la ligne ; e1 = [ 2 19 31 33 ]
     printEns(e);
-    printf("]\n");
+    printf("\n");
 }
 
 void intersection(ensemble e1, ensemble e2, ensemble e3){ // calcul si e3 est égale à l'intersection de e1 et e3. Hypothèse : les ensembles e1 et e2 ont la même capacité.
@@ -160,8 +163,61 @@ void diffSym(ensemble e1, ensemble e2, ensemble e3){ // calcul la différence sy
 //-----------------------------Test------------------------------------------//
 
 int main(){
+    ensemble e1, e2, e3;
+    //déclarer et initialiser 2 ensembles e1 et e2 à une capacité de 50 
+    initEns(e1, 50);
+    initEns(e2, 50); 
+    //ajouter 2, 19, 31 dans e1 et 10, 19, 34 dans e2 -> e1 = [ 2 19 31 ] e2 = [ 10 19 34 ]
+    ajouter(2,e1);
+    ajouter(19,e1);
+    ajouter(31,e1);
+    ajouter(10,e2);
+    ajouter(19,e2);
+    ajouter(34,e2);
+    //tester si 10 et 19 appartiennent à e1 -> 0 et 1
+    appartient(10,e1);
+    appartient(19,e1);
+    //ajouter 33 à e1 et e2
+    ajouter(33,e1);
+    ajouter(33,e2);
+    //écrire sur la s/s les ensembles e1 et e2 -> e1 = [ 2 19 31 33 ] e2 = [ 10 19 33 34 ]
+    printf("e1 = ");
+    printlnEns(e1);
+    printf("e2 = ");
+    printlnEns(e2);
+    //écrire sur la s/s, l’intersection de e1 et e2 -> e1 n e2 = [ 19 33 ]
+    intersection(e1,e2,e3);
+    printf("e1 n e2 = ");
+    printlnEns(e3);
+    //écrire sur la s/s, l’union de e1 et e2 -> e1 u e2 = [ 2 10 19 31 33 34 ]
+    Union(e1,e2,e3);
+    printf("e1 U e2 = ");
+    printlnEns(e3);
+    //écrire sur la s/s, la différence de e1 et e2 -> e1 - e2 = [ 2 31 ]
+    difference(e1,e2,e3);
+    printf("e1 - e2 = ");
+    printlnEns(e3);
+    //écrire sur la s/s, le complémentaire de e1 -> ~e1 = [ 0 1 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 22 23 24 25
+    //26 27 28 29 30 32 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 ]
+    complementaire(e1,e2);
+    printf("~e1 = ");
+    printlnEns(e2);
+    //écrire sur la s/s, la différence symétrique de e1 et e2 -> e1 delta e2 = [ 2 10 31 34 ]
+    diffSym(e1,e2,e3);
+    printf("e1 delta e2 = ");
+    printlnEns(e3);
+    //vérifier que le complémentaire de intersection de e1 et e2 est la réunion de leurs complémentaires (loi de De Morgan) -> De Morgan : 1
+    // ?
+    //affecter e2 à e1 et vérifier que e1 = e2 -> affectation : e1 = e2 => e1==e2 = 1
+    affecter(e1,e2);
+    printf("%d", egal(e1,e2));
     return EXIT_SUCCESS;
 }
+
+
+
+
+
 
 
 
