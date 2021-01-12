@@ -150,11 +150,11 @@ void diffSym(ensemble e1, ensemble e2, ensemble e3){ // calcul la différence sy
     e3[1]=e1[1]; // capacité totale de l'ensemble e3
 
     for(int i = 2; i <= e1[1]+1; i++){
-        if (e1[i]==1 && e2[i]==1){ //il s'agit d'une intersection des deux ensemble, la valeur est alors ajoutée à e3
-            e3[i]=0;
+        if ((e1[i]==1 && e2[i]==1) || (e1[i]==0 && e2[i]==0)){ //il s'agit d'une intersection des deux ensemble ou les deux ensemble sont vide pour cette valeur
+            e3[i]=0; // aucune valeur n'est donc affectée à e3
         }
         else{
-            e3[i]=1; // pas d'intersection, donc pas de valeur ajoutée à e3
+            e3[i]=1; // pas d'intersection entre e1 e2 ni de double tableau vide donc valeur ajouté à e3
             e3[0]++; // la capacité effective de e3 augmente
         } 
     }
@@ -174,9 +174,14 @@ int main(){
     ajouter(10,e2);
     ajouter(19,e2);
     ajouter(34,e2);
+    //écrire sur la s/s les ensembles e1 et e2 -> e1 = [ 2 19 31 ] e2 = [ 10 19 34 ]
+    printf("e1 = ");
+    printlnEns(e1);
+    printf("e2 = ");
+    printlnEns(e2);
     //tester si 10 et 19 appartiennent à e1 -> 0 et 1
-    appartient(10,e1);
-    appartient(19,e1);
+    printf("%d\n",appartient(10,e1));
+    printf("%d\n",appartient(19,e1));
     //ajouter 33 à e1 et e2
     ajouter(33,e1);
     ajouter(33,e2);
@@ -199,9 +204,10 @@ int main(){
     printlnEns(e3);
     //écrire sur la s/s, le complémentaire de e1 -> ~e1 = [ 0 1 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 22 23 24 25
     //26 27 28 29 30 32 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 ]
-    complementaire(e1,e2);
+    complementaire(e1,e3);
     printf("~e1 = ");
-    printlnEns(e2);
+    printlnEns(e3);
+    //vide(e3);
     //écrire sur la s/s, la différence symétrique de e1 et e2 -> e1 delta e2 = [ 2 10 31 34 ]
     diffSym(e1,e2,e3);
     printf("e1 delta e2 = ");
@@ -210,7 +216,7 @@ int main(){
     // ?
     //affecter e2 à e1 et vérifier que e1 = e2 -> affectation : e1 = e2 => e1==e2 = 1
     affecter(e1,e2);
-    printf("%d", egal(e1,e2));
+    printf("affectation : e1 = e2 => e1==e2 = %d\n", egal(e1,e2));
     return EXIT_SUCCESS;
 }
 
