@@ -219,17 +219,3 @@ int main(){
     printf("affectation : e1 = e2 => e1==e2 = %d\n", egal(e1,e2));
     return EXIT_SUCCESS;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
