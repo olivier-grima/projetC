@@ -62,7 +62,7 @@ void affecter(ensemble e1, ensemble e2){// affecte un ensemble e2 à un ensemble
 }
 
 int appartient(int n, ensemble e){ //teste si entier n appartient à un ensemble e ;
-    if(e[n+2]==n){
+    if(e[n+2]==1){
         return 1;
     }
     else return 0;
