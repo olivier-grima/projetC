@@ -41,7 +41,7 @@ int estVide(ensemble e){// test si un ensemble e est vide ou pas
     return 1; //tableau vide
 }
 
-int egal(ensemble e1, ensemble e2){ //hypothèse : les ensembles font la même taille -> capacités égales
+int egal(ensemble e1, ensemble e2){ //test si les ensembles sont égaux ; hypothèse : les ensembles font la même taille -> capacités égales
     if (e1[0]==e2[0]){ //test si même nbr d'élément 
         for(int k=2; k<=e1[1]+1; k++){
            if(e1[k]!=e2[k]){ //s'arrête dès que des elem ont des val différentes 
@@ -160,10 +160,50 @@ void diffSym(ensemble e1, ensemble e2, ensemble e3){ // calcul la différence sy
     }
 }
 
+//-----------------------------Crible d'Erasthostène------------------------------------------//
+
+void nbPremiers(int n, ensemble resultat){
+  ensemble crible; 
+  initEns(crible,n+1);
+  plein(crible);
+  enlever(0, crible);
+  enlever(1, crible);
+
+  int i = 4;
+  int multiple;
+
+  while(estVide (crible)==0){
+    
+    if(crible[i]==1){
+
+      ajouter(i-2, resultat);
+      enlever(i-2, crible);
+      multiple = 2*(i-2);
+
+      while(multiple <= crible[1]-1){ //enlève tous les multiples
+
+        if(crible[multiple+2]==1){ //vérifie si le multiple a déjà été enlevé ou non
+          enlever(multiple, crible);
+        }
+        multiple += (i-2);
+      }
+    }
+    i++;
+  }
+}
+
+//-----------------------------Fin des procédures------------------------------------------//
+
+
+
+
+
+
 //-----------------------------Test------------------------------------------//
 
 int main(){
-    ensemble e1, e2, e3;
+//-----------------------------Ensemble------------------------------------------//
+    ensemble e1, e2, e3, e4;
     //déclarer et initialiser 2 ensembles e1 et e2 à une capacité de 50 
     initEns(e1, 50);
     initEns(e2, 50); 
@@ -213,9 +253,24 @@ int main(){
     printf("e1 delta e2 = ");
     printlnEns(e3);
     //vérifier que le complémentaire de intersection de e1 et e2 est la réunion de leurs complémentaires (loi de De Morgan) -> De Morgan : 1
-    // ?
+    intersection(e1,e2,e3); //e3 = e1 n e2
+    complementaire(e3,e3); //e3 = ~(e1 n e2)
+    complementaire(e1,e1); //e1 = ~e2
+    complementaire(e2,e2); //e2 = ~e3
+    Union(e1,e2,e4); //e4 = ~e1 U ~e2
+    printf("De Morgan : %d\n", egal(e3,e4));
+    complementaire(e2,e2); //annule le complémentaire fait plus tôt pour continuer avec l'affectation
     //affecter e2 à e1 et vérifier que e1 = e2 -> affectation : e1 = e2 => e1==e2 = 1
     affecter(e1,e2);
     printf("affectation : e1 = e2 => e1==e2 = %d\n", egal(e1,e2));
+
+//-----------------------------Crible------------------------------------------//
+    int n = 22;
+    ensemble resultat;
+    initEns(resultat,n+1);
+    nbPremiers(n, resultat);
+    printf("Les nombres premiers compris entre 2 et %d sont : ",n);
+    printlnEns(resultat);
+
     return EXIT_SUCCESS;
 }

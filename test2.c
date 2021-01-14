@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define CAPACITEMAX 1000
-//#define getName(var) #var
 typedef int ensemble[CAPACITEMAX+2];
 
 void initEns(ensemble e, const int n){ //initialise un tableau de capacité n
@@ -30,6 +29,7 @@ void printlnEns(ensemble e){ //écrit un ensemble e sur la sortie standard suivi
     printEns(e);
     printf("\n");
 }
+
 void diffSym(ensemble e1, ensemble e2, ensemble e3){ // calcul la différence symétrique des ensembles e1 et e2
     e3[0] =0; // on initialise la capacité effective de e3
     e3[1]=e1[1]; // capacité totale de l'ensemble e3
