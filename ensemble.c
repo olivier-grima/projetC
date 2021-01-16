@@ -25,14 +25,14 @@ void initEns(ensemble e, const int n){ //initialise un tableau de capacité n
 void vide(ensemble e){// vide l'emsemble passé en paramètre
     e[0] = 0;
     for (int i = 2; i <= e[1]+1; i++){
-        e[i]=0;
+        e[i]=0; // l'index i du tableau est mit à 0
     } 
 }
 
 void plein(ensemble e){ // remplit l'ensemble passé en paramètre
     e[0]=e[1];
     for(int i=2; i<=e[1]+1; i++){
-        e[i]=1;
+        e[i]=1; // l'index i du tableau est mit à 1
     }
 }
 
@@ -44,7 +44,7 @@ int estVide(ensemble e){// test si un ensemble e est vide ou pas
 int egal(ensemble e1, ensemble e2){ //test si les ensembles sont égaux ; hypothèse : les ensembles font la même taille -> capacités égales
     if (e1[0]==e2[0]){ //test si même nbr d'élément 
         for(int k=2; k<=e1[1]+1; k++){
-           if(e1[k]!=e2[k]){ //s'arrête dès que des elem ont des val différentes 
+           if(e1[k]!=e2[k]){ //s'arrête dès que des éléments ont des valeurs différentes 
                 return 0; //ensembles différents
             } 
         }
@@ -63,26 +63,26 @@ void affecter(ensemble e1, ensemble e2){// affecte un ensemble e2 à un ensemble
 
 int appartient(int n, ensemble e){ //teste si entier n appartient à un ensemble e ;
     if(e[n+2]==1){
-        return 1;
+        return 1; // l'entier n appartient à l'ensemble e
     }
-    else return 0;
+    else return 0; // l'entier n n'appartient p s à l'ensemble e
 }
 
 void ajouter(int n, ensemble e){ // ajoute un entier n à un ensemble e
-    e[n+2]=1;
-    e[0]+=1;
+    e[n+2]=1; //ajoute l'entier n à l'ensemble
+    e[0]+=1;  //ajoute 1 à la capacité effective 
 }
 
 void enlever(int n, ensemble e){ //enlève un entier n d’un ensemble e ;
-    e[n+2]=0;
-    e[0]-=1;
+    e[n+2]=0; //enlève l'entier n à l'ensemble
+    e[0]-=1; //enlève 1 à la capacité effective
 }
 
 void printEns(ensemble e){ // écrit un ensemble sur la sortie standard 
     printf("[ ");
     for (int i=2; i <=e[1]+1; i++){
-        if(e[i]==1){
-            printf("%d ",i-2);
+        if(e[i]==1){ 
+            printf("%d ",i-2); //affiche la valeur de l'entier à l'index i de l'ensemble
         } 
     }
     printf("]");
@@ -120,27 +120,27 @@ void Union(ensemble e1, ensemble e2, ensemble e3){ //calcule e3 = e1 U e2 ; hypo
 }
 
 void difference(ensemble e1, ensemble e2, ensemble e3){ // calcul un ensemble e3 qui est la différence des ensemble e1 et e2
-    e3[0]=e1[0];
-    e3[1]=e1[1];
+    e3[0]=e1[0]; //on initialise la capacité effective de l'ensemble e3
+    e3[1]=e1[1]; //on initialise la capacité totale de l'ensemble e3
     
     for(int i= 2; i <= e1[1]+1; i++){
-        if(e1[i] == e2[i]){
-            e3[i]=0;
-            e3[0]--;
+        if(e1[i] == e2[i]){ // si l'entier est présent dans e1 et e2
+            e3[i]=0; // alors on n'affecte pas cet entier à l'ensemble e3
+            e3[0]--; // et on retire 1 à la capacité effective de e3
         }
-        else e3[i] = e1[i];
+        else e3[i] = e1[i]; // sinon si l'entier n'est présent que dans e1 on le copie dans e3
     }
 }
 
 void complementaire(ensemble e1, ensemble e2){ //calcule e2 complémentaire de e1 dans l’ensemble plein
-    e2[1]=e1[1];
-    e2[0]=e1[1]-e1[0];
+    e2[1]=e1[1]; // initialise la capacité totale de e2
+    e2[0]=e1[1]-e1[0]; //initialise la capacité effective de e2
     for(int i=2; i<=e1[1]+1; i++){
-        if(e1[i]==0){
-            e2[i]=1;
+        if(e1[i]==0){ // si l'entier de l'index i n'est pas présent dans e1
+            e2[i]=1;  // alors il est affecté à e2
         }
         else {
-            e2[i]=0;
+            e2[i]=0; //sinon l'index en quesiton est mis à 0 dans e2
         }    
     }
 }
